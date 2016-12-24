@@ -7,6 +7,8 @@
 
 
 <script>
+
+
     var d = new Date();
     var month = '0';
     if (d.getMonth() + 1 < 10) {
@@ -19,8 +21,10 @@
 
 
     var url = 'https://api.instagram.com/v1/users/self/?access_token=1432711798.b132a67.9e91d6b4eaaa48caba61665bf29efc64'
-    var github_url = 'https://api.github.com/users/nayunhwan'
+    var github_url = 'https://api.github.com/orgs/EXIT-kr'
     var follow = 0;
+
+
 
     function fill_follow(media, follows, followed_by) {
         $('#media > span').text(media);
@@ -55,6 +59,7 @@
         type: 'GET',
         crossDomain: true,
         success: function (data) {
+            console.log(data);
             $('#count_repos').html(data.public_repos);
         }
     });
@@ -201,9 +206,9 @@
 
     {% include sidebar.html %}
 
-    <div id="context">
+    <div class="text-center">
         <br>
-        <div id="main_lang">
+        <!-- <div id="main_lang">
 
             <h1><i class="icon-c_lang"></i></h1>
             <h1><i class="icon-java"></i></h1>
@@ -217,16 +222,60 @@
             <h1><i class="xi-illustrator"></i></h1>
             <h1><i class="xi-office"></i></h1>
 
-        </div>
+        </div>-->
         <br>
+        <div id="service">
+            <h2>Service</h2>
+            <p>
+              EXIT의 서비스에 대해서 소개합니다.
+            </p>
+            <div class="container">
+
+                  <div class="row">
+                    <div class="one-half column">
+                          <div class="text-left">
+                              <h2>가장 진보된 셔틀버스 시스템</h2>
+                              <p>
+                                셔틀콕은 셔틀버스를 이용하는 가장 최적의 선택입니다.
+                              </p>
+                          </div>
+
+
+                    </div>
+                    <div class="one-half column text-center">
+
+                          <img src="/public/img/shuttlecock.png">
+
+                    </div>
+
+
+
+
+              </div>
+
+              <a class="button button-primary">셔틀콕 바로가기</a>
+
+
+
+            </div>
+        </div>
         <div id="company">
-            <img src="/public/img/exit_logo.png">
-            <img src="/public/img/google_logo.png">
+            <h2>Partnership</h2>
+            <p>
+              EXIT는 한양대학교 ERICA 창업팀에 소속되어있습니다.
+            </p>
+            <div>
+              <img src="/public/img/knowledge_factory.png" style="width:200px; height:auto">
+              <img src="/public/img/hanyang_erica_logo.png" style="margin-bottom:85px">
+
+            </div>
+
+            <!-- <img src="/public/img/google_logo.png">
             <img src="/public/img/gdg_logo.png">
             <img src="/public/img/samsung_logo.png">
             <img src="/public/img/ssm_logo.png">
             <img src="/public/img/ms_logo.png">
-            <img src="/public/img/msp_logo.png">
+            <img src="/public/img/msp_logo.png"> -->
         </div>
     </div>
 
@@ -263,12 +312,12 @@
         </a>
         <br>
         <br>
+
+    </div>
+    <!-- <div style="text-align:center; ">
         <h2><i class="xi-instagram"></i> Photo</h2>
         <p class="ubuntu_font">from my Instagram</p>
         <br>
-    </div>
-    <div style="text-align:center; ">
-
         <div id="instafeed"></div>
 
         <br>
@@ -279,7 +328,7 @@
 
         <br>
         <br>
-    </div>
+    </div> -->
 
     {% include footer.html %}
 
