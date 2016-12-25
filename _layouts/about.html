@@ -116,7 +116,7 @@
 
             $('#count_history').text(data.length);
 
-            for (var i = 0; i < 5; i++) {
+            for (var i = 0; i < 1; i++) {
                 var element = $('<p/>').addClass('ubuntu_font').addClass('history');
                 var type = data[i].type;
                 var name = data[i].actor.login;
@@ -206,6 +206,22 @@
 
     {% include nav.html %}
     {% include slidebar.html %}
+    <div id="github">
+        <div class="row">
+          <h2><i class="xi-github"></i> Histroy</h2>
+          <div id="github_timeline" class="twelve columns">
+
+              <!-- Timeline of github -->
+          </div>
+        </div>
+
+
+
+      <div class="clear">
+
+      </div>
+    </div>
+
 
     <br>
     <div class="banner">
