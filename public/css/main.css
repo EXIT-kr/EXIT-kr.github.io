@@ -49,6 +49,7 @@ li > a{
   overflow-x: hidden;;
 }
 
+
 h1,
 h2,
 h3,
@@ -76,7 +77,7 @@ img{
 .container {
   position: relative;
   width: 100%;
-  max-width: 960px;
+  /*max-width: 960px;*/
   margin: 0 auto;
   padding: 0 20px;
   box-sizing: border-box; }
@@ -275,6 +276,7 @@ input[type="button"].button-primary:focus {
 #main_nav {
     top: 0px;
     position: fixed;
+    z-index: 9999999;
     width: 100%;
     padding: 15px 30px;
     /*padding-bottom: 4px;*/
@@ -400,6 +402,31 @@ input[type="button"].button-primary:focus {
     list-style: none;
 }
 
+#campus{
+
+  background-size: cover;;
+  background-repeat: no-repeat;
+  /*background-position: 0px -200px;*/
+  padding: 100px 0px;
+  background-image: url('/public/img/campus.jpg');
+  color: rgba(255, 255, 255, 0.9);
+}
+
+#campus h1{
+
+  color: rgba(255, 255, 255, 0.9);
+}
+
+#google_play_button{
+  padding: 3px 25px;
+  background: white;
+  height: auto;
+}
+#google_play_button img{
+  display: block;
+  padding: 10px;
+}
+
 .banner {
     /*    background-image: url(img/developer.jpeg);*/
     background: #061524;
@@ -481,6 +508,15 @@ footer  p{
 }
 
 @media screen and (max-width:780px) {
+    #main_bg {
+        text-align: center;
+        background-image: url(../img/cover.jpg);
+        background-position: 0px;
+        background-size: cover;
+        padding: 70px 0px;
+        /* padding top : default + 68px*/
+        padding-top: 138px;
+    }
     #main_nav{
       text-align: center;
       padding: 10px 20px;
