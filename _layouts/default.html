@@ -4,7 +4,9 @@
 
 <body>
 
-    {% include sidebar.html %}
+    {% include nav.html %}
+    {% include slidebar.html %}
+
     <!-- {% for category in site.categories %} -->
     <!-- <li><a name="{{ category | first }}">{{ category | first }}</a>
       <ul>
@@ -16,6 +18,7 @@
       </ul>
     </li>
   {% endfor %} -->
+
     <div id="context">
         {{ content }}
     </div>
