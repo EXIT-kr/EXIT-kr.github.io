@@ -40,53 +40,49 @@
 -->
 
 <script>
-    var insta_url = 'https://api.instagram.com/v1/users/self/?access_token=1432711798.b132a67.9e91d6b4eaaa48caba61665bf29efc64';
+  var insta_url = 'https://api.instagram.com/v1/users/self/?access_token=1432711798.b132a67.9e91d6b4eaaa48caba61665bf29efc64';
 
-    function fill_follow(media, follows, followed_by){
-                $('#media > span').text(media);
-                $('#follower > span').text(follows);
-                $('#following > span').text(followed_by);
-            }
+  function fill_follow(media, follows, followed_by) {
+    $('#media > span').text(media);
+    $('#follower > span').text(follows);
+    $('#following > span').text(followed_by);
+  }
 
-    $.ajax({
-                url: insta_url,
-                type: 'GET',
-                crossDomain: true,
-                dataType: 'jsonp',
-                success: function(data) {
-                    var media = data.data.counts.media;
-                    var follows = data.data.counts.followed_by;
-                    var followed_by = data.data.counts.follows;
+  $.ajax({
+    url: insta_url,
+    type: 'GET',
+    crossDomain: true,
+    dataType: 'jsonp',
+    success: function (data) {
+      var media = data.data.counts.media;
+      var follows = data.data.counts.followed_by;
+      var followed_by = data.data.counts.follows;
 
 
-                    fill_follow(media, follows, followed_by);
-                    $('#profile_photo').attr('src', data.data.profile_picture);
+      fill_follow(media, follows, followed_by);
+      $('#profile_photo').attr('src', data.data.profile_picture);
 
-                },
-                error: function(data) { alert('Failed!'); }
-            });
+    },
+    error: function (data) {
+      alert('Failed!');
+    }
+  });
 </script>
 
 
 <div id="main_nav">
-        <a href="/"><img id="logo" src="/public/img/main_exit_logo.png" class="left" ></a>
-        <div id="nav_left" class="left">
-
-            <!-- <a href="#"><h3>홈</h3></a>
-            <a href="#"><h3>디자인</h3></a>
-            <a href="#"><h3>서비스</h3></a> -->
-            <a href="/blog"><h3>제휴</h3></a>
-            <!-- <a href="/blog"><h3>Blog</h3></a> -->
-
-        </div>
-        <div id="nav_right" class="right">
-            <h2><a href="http://github.com/exit-kr" target="_blank"><i class="xi-github"></i></a></h2>
-            <h2><a href="mailto:nayunhwan.dev@gmail.com" target="_blank"><i class="xi-gmail"></i></a></h2>
-        </div>
-        <div id="mobile_menu_bar" class="left">
-            <h2><i class="xi-bars"></i></h2>
-        </div>
-        <div class="clear"></div>
+    <a href="/"><img id="logo" src="/public/img/main_exit_logo.png" class="left"></a>
+    <div id="nav_left" class="left">
+        <a href="/blog"><h3>제휴</h3></a>
+    </div>
+    <div id="nav_right" class="right">
+        <h2><a href="http://github.com/exit-kr" target="_blank"><i class="xi-github"></i></a></h2>
+        <h2><a href="mailto:nayunhwan.dev@gmail.com" target="_blank"><i class="xi-gmail"></i></a></h2>
+    </div>
+    <div id="mobile_menu_bar" class="left">
+        <h2><i class="xi-bars"></i></h2>
+    </div>
+    <div class="clear"></div>
 </div>
 
 <div id="mobile_menu">
