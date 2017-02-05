@@ -3,191 +3,40 @@
 
 {% include head.html %}
 
-
-<script>
-
-
-  var d = new Date();
-  var month = '0';
-  if (d.getMonth() + 1 < 10) {
-    month += (d.getMonth() + 1);
-  } else {
-    month = (d.getMonth() + 1);
-  }
-  var cur_date = d.getFullYear() + '-' + month + '-' + d.getDate();
-
-
-  var url = 'https://api.instagram.com/v1/users/self/?access_token=1432711798.b132a67.9e91d6b4eaaa48caba61665bf29efc64'
-  var github_url = 'https://api.github.com/orgs/EXIT-kr'
-  var follow = 0;
-
-
-  function fill_follow(media, follows, followed_by) {
-    $('#media > span').text(media);
-    $('#follower > span').text(follows);
-    $('#following > span').text(followed_by);
-  }
-
-
-  $.ajax({
-    url: url,
-    type: 'GET',
-    crossDomain: true,
-    dataType: 'jsonp',
-    success: function (data) {
-      var media = data.data.counts.media;
-      var follows = data.data.counts.followed_by;
-      var followed_by = data.data.counts.follows;
-
-
-      fill_follow(media, follows, followed_by);
-      $('#profile_photo').attr('src', data.data.profile_picture);
-
-    },
-    error: function (data) {
-      alert('Failed!');
-    }
-  });
-
-
-  $.ajax({
-    url: github_url,
-    type: 'GET',
-    crossDomain: true,
-    success: function (data) {
-      console.log(data);
-      $('#count_repos').html(data.public_repos);
-    }
-  });
-
-  $.ajax({
-    url: github_url + '/repos',
-    type: 'GET',
-    crossDomain: true,
-    success: function (data) {
-
-
-      for (var i = 0; i < data.length; i++) {
-
-        var language = data[i].language;
-        var li = $('<li/>').addClass('repo');
-        var anchor = $('<a/>').attr('href', data[i].html_url);
-
-        if (language == 'Java') {
-          li.append('<h1><i class="icon-java"></i></h1>');
-        } else if (language == 'C++') {
-          li.append('<h1><i class="icon-c_plus_lang"></i></h1>');
-        } else if (language == 'C') {
-          li.append('<h1><i class="icon-c_lang"></i></h1>');
-        } else if (language == 'JavaScript') {
-          li.append('<h1><i class="xi-javascript"></i></h1>');
-        } else if (language == 'CSS') {
-          li.append('<h1><i class="xi-css3"></i></h1>');
-        } else if (language == "HTML") {
-          li.append('<h1><i class="xi-html5"></i></h1>');
-        } else if (language == "Python") {
-          li.append('<h1><i class="xi-python"></i></h1>');
-        } else if (language == null) {
-          li.append('<h1><i class="xi-file"></i></h1>');
-        }
-
-        li.append(data[i].name);
-        li.append($('<p/>').addClass('ubuntu_font').text(data[i].description));
-        li.append($('<span/>').addClass('ubuntu_font date').text('Updated ' + data[i].pushed_at.slice(0, 10)));
-
-        anchor.append(li);
-
-        //                        $('#repos_list').append('<li class="repo">'+data[i].name+'<br>'+data[i].language+'</li>');
-        $('#repos_list').append(anchor);
-
-      }
-    }
-  });
-
-  $.ajax({
-    url: github_url + '/events',
-    type: 'GET',
-    crossDomain: true,
-    success: function (data) {
-
-      $('#count_history').text(data.length);
-
-      for (var i = 0; i < 1; i++) {
-        var element = $('<p/>').addClass('ubuntu_font').addClass('history');
-        var type = data[i].type;
-        var name = data[i].actor.login;
-        var repo_name = data[i].repo.name;
-        var repo_url = 'https://github.com/' + repo_name;
-        var time = data[i].created_at.slice(0, 10);
-        var avatar = data[i].actor.avatar_url;
-
-
-        // get time
-
-        var date_array = time.split('-');
-        var date_obj = new Date(date_array[0], date_array[1] - 1, date_array[2]);
-        var between_day = Math.floor((d.getTime() - date_obj.getTime()) / 1000 / 60 / 60 / 24);
-
-
-        if (between_day == 0) {
-          time = 'Today';
-        } else if (between_day < 7) {
-          time = between_day + ' days ago';
-        }
-
-
-        var anchor_name = $('<a/>').attr('href', 'https://github.com/' + name).text(name);
-        var avatar_img = $('<img/>').attr({
-          'src': avatar,
-          'width': '30px'
-        }).addClass('img_circle');
-
-
-        element.append(anchor_name);
-
-        if (type == 'CreateEvent') {
-
-          var ref_type = data[i].payload.ref_type;
-          element.append(' created ');
-
-          if (ref_type == 'repository') {
-            element.prepend($('<h1/>').append($('<i/>').addClass('xi-book')));
-            element.append('repository');
-          } else if (ref_type == 'branch') {
-            element.prepend($('<h1/>').append($('<i/>').addClass('xi-branch')));
-            element.append('branch ' + data[i].payload.master_branch);
-          }
-        } else if (type == 'PushEvent') {
-          var ref = data[i].payload.ref.split('/')[2];
-
-          element.prepend($('<h1/>').append($('<i/>').addClass('xi-log')));
-          element.append(' pushed to ' + ref);
-        }
-
-        var anchor_repo = $('<a/>').attr('href', repo_url).text(repo_name);
-
-        element.append(' at ');
-        element.append(anchor_repo);
-
-        var span_time = $('<span/>').addClass('span_time').text(time).append('<br>');
-        element.prepend(span_time);
-        element.prepend(avatar_img);
-        $('#github_timeline').append('<hr>');
-        $('#github_timeline').append(element);
-      }
-      $('#github_timeline').append('<hr>');
-    }
-  })
-</script>
-
 <body>
 
 {% include nav.html %}
 {% include landing.html %}
 
-<div class="banner">
-    <h1>Service</h1>
-    <p>EXIT에서 제공하는 서비스를 소개합니다</p>
+<br/>
+<!--<div class="section">-->
+    <!--<h1>Service</h1>-->
+    <!--<p>EXIT에서 제공하는 서비스를 소개합니다</p>-->
+<!--</div>-->
+
+<div class="section text-center making-homepage">
+    <br/><br/><br/><br/>
+    <h2 class="title">온라인에 나를 표현하다</h2>
+    <p class="subtitle">가장 쉽고 아름답게 당신의 홈페이지를 만들어드리겠습니다.</p>
+    <br />
+    <img src="/public/img/mac.jpg" width="70%">
+    <br/><br/><br/>
+    <h2 class="title">어디서부터 시작해야할지 모른다면</h2>
+    <br/>
+    <div class="content">
+        <p class="batang">
+            지금까지 홈페이지 개발은 어려웠습니다. 직접 개발하지 않더라도 생소한 용어와 부담되는 가격으로 인해 시도조차 못하고 포기하는 사람들도 있었습니다. <br/><br/>
+            이젠 저희가 최대한 고객의 입장에서 맞춰서 도와드리겠습니다. <br/><br/>
+
+            인터넷은 이제 모든 사물과 연결되기 시작하고, 온라인의 중요성은 점점 커져갑니다.<br/>
+            이러한 시대의 흐름에 맞춰 온라인 상에 자신만의 공간을 만들 수 있도록 도와드리겠습니다.
+        </p>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
 </div>
 
 <div id="campus" class="banner text-center">
@@ -212,15 +61,7 @@
     <div>
         <img src="/public/img/knowledge_factory.png" style="width:200px; height:auto">
         <img src="/public/img/hanyang_erica_logo.png" style="margin-bottom:85px">
-
     </div>
-
-    <!-- <img src="/public/img/google_logo.png">
-    <img src="/public/img/gdg_logo.png">
-    <img src="/public/img/samsung_logo.png">
-    <img src="/public/img/ssm_logo.png">
-    <img src="/public/img/ms_logo.png">
-    <img src="/public/img/msp_logo.png"> -->
 </div>
 <div style="text-align:center; padding: 0px 10%;">
 

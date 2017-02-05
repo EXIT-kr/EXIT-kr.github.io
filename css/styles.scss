@@ -1,0 +1,89 @@
+---
+---
+
+@font-face {
+  font-family: 'IropkeBatangM';
+  src: url('../public/css/fonts/IropkeBatangM.eot')
+}
+
+@font-face {
+  font-family: 'IropkeBatangM';
+  src: url('../public/css/fonts/IropkeBatangM.woff')
+}
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+
+* {
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-weight: 400;
+
+}
+
+body {
+  margin: 0 auto;
+  color: #5D5D5D;
+}
+
+@mixin batang-font() {
+  font-family: "IropkeBatangM", 'Open Sans', Arial, sans-serif;
+}
+
+.batang {
+  font-family: "IropkeBatangM", 'Open Sans', Arial, sans-serif;
+}
+
+.main-video {
+  position: relative;
+  color: white;
+
+  div {
+    padding: 200px 30px;
+    //margin-top: 274px;
+    text-align: center;
+    color: white;
+
+    .title {
+      font-weight: 400;
+    }
+
+    .subtitle {
+      @include batang-font();
+    }
+  }
+
+  video {
+    position: absolute;
+    z-index: -1;
+    top: 0px;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    object-fit: inherit;
+
+    &::after {
+      display: table;
+    }
+  }
+}
+
+.section {
+  padding: 20px 0px;
+
+  .content {
+    width: 70%;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  &.making-homepage {
+
+    .title {
+      @include batang-font();
+    }
+    
+    .subtitle {
+      @include batang-font();
+    }
+  }
+}
