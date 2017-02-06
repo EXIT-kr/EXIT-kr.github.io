@@ -13,6 +13,8 @@
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 
+$color-main: #314669;
+
 * {
   font-family: 'Open Sans', Arial, sans-serif;
   font-weight: 400;
@@ -37,8 +39,8 @@ body {
   color: white;
 
   div {
-    padding: 200px 30px;
-    //margin-top: 274px;
+    padding: 220px 30px;
+    padding-top: 274px;
     text-align: center;
     color: white;
 
@@ -68,7 +70,7 @@ body {
 }
 
 .section {
-  padding: 20px 0px;
+  padding: 140px 0px;
 
   .content {
     width: 70%;
@@ -81,9 +83,39 @@ body {
     .title {
       @include batang-font();
     }
-    
+
     .subtitle {
       @include batang-font();
     }
+  }
+}
+
+.circle-icon {
+
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  padding: 12px;
+  margin: 20px;
+
+  border: 2px solid $color-main;
+  border-radius: 100%;
+  text-align: center;
+  color: $color-main;
+
+  i {
+    margin-top: 7px;
+    margin-bottom: 5px;
+    display: block;
+  }
+
+  .label {
+    @include batang-font();
+  }
+
+  &:hover {
+    color: white;
+    background: $color-main;
+    transition: 0.3s;
   }
 }
