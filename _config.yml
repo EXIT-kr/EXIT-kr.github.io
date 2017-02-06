@@ -13,8 +13,8 @@ relative_permalinks: false
 
 # Setup
 title:            EXIT
-tagline:          '개발 블로그'
-description:      '디발자 혹은 개자이너'
+tagline:          ''
+description:      ''
 url:              /
 baseurl:          /
 
