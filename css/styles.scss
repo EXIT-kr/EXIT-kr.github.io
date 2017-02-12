@@ -34,6 +34,44 @@ body {
   font-family: "IropkeBatangM", 'Open Sans', Arial, sans-serif;
 }
 
+.nav_left {
+  margin-top: 4px;
+
+  a {
+    text-decoration: none;
+  }
+  h3 {
+    display: inline;
+    margin-left: 30px;
+    color: lightgray;
+
+    &:hover {
+      transition: 0.3s;
+      color: #314669;
+    }
+  }
+}
+
+.main-bg {
+  text-align: center;
+  background-image: url('../public/img/cover.jpg');
+  background-position: 0px;
+  background-size: cover;
+  padding: 120px 0px;
+  padding-top: 188px;
+
+  h1 {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  h2 {
+    @include batang-font();
+  }
+  p {
+    color: rgba(255, 255, 255, 0.7);
+    @include batang-font();
+  }
+}
+
 .main-video {
   position: relative;
   color: white;
