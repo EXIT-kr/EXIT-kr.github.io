@@ -15,11 +15,12 @@
 
 
     <!-- jQuery CDN -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="./js/jquery-3.2.1.js"></script>
     <!-- instafeed Javascript -->
     <script type="text/javascript" src="/public/js/instafeed.js"></script>
-
-
+    <script src="./lib/Semantic/semantic.js"></script>
+    <link rel="stylesheet" type="text/css" href="./lib/Semantic/semantic.css">
+    <link rel="stylesheet" href="/css/animate.css">
     <!-- CSS -->
 
     <!-- XEicon CSS -->
@@ -50,6 +51,8 @@
         $(window).resize(function(){
              $('#mobile_menu').hide();
         }).resize();
+        $('.main-video').height(screen.height);
+        // alert(screen.height);
       })
     </script>
 </head>
